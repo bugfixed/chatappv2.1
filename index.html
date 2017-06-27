@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Chat App</title>
+    <link rel='stylesheet' href='style.css' type='text/css' />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="chat.js"></script>
+   
+</head>
+
+<body >
+    <ul id="messages"></ul>
+    <span id="notifyUser"></span>
+    <form id="form" action="" onsubmit="return submitfunction();">
+        <input type="hidden" id="user" value="" />
+        <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." />
+        <input type="submit" id="button" value="Send" />
+    </form>
+
+    <!--Model-->
+    
+    <div class="modal fade" id="userModal" role="dialog">
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+    
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enter Username</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Username : <input type="text" id="usernameText" />
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="usersubmit" class="btn btn-default" data-dismiss="modal" onclick="newuser()">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        
+ 
+   
+    <!--Scripts-->
+     <!--
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function loadmodal() {
+            $('#userModal').modal('show');
+        };
+       
+        $(function () {
+            var socket = io();
+            var loggedSessionUser = sessionStorage.getItem('');
+            $('#usersubmit').click(function () {
+                //Semd and recieve message for the particular user session
+                sessionStorage.setItem('userkey', $('#usernameText').val());
+              //  socket.emit('username', $('#usernameText').val());
+               
+                return true;
+            });
+            $('form').submit(function () {
+                //emit chat message event with text box value and then make text box empty
+               
+                socket.emit('chat message', $('#m').val(), sessionStorage.getItem('userkey'));
+                $('#m').val('');
+                return false;
+            });
+          //  var eventname = 'chat message_' + sessionStorage.getItem('userkey');
+            socket.on('chat message', function (msg, loggedinUser) {
+                $('#messages').append($('<li>').text(loggedinUser + ' : ' + msg));
+            });
+
+            //$(window).on('load', function () {
+               
+            //    $('#userModal').modal('show');
+            //});
+
+           
+
+          
+        });
+       
+
+    </script>
+    -->
+</body>
+</html>
